@@ -9,29 +9,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view:"list",
-      Blogs:[]
+      view: "list",
+      Blogs: [],
     };
   }
 
   componentDidMount() {
     axios.get("/api/blog").then((result) => {
-      console.log(result.data)
+      console.log(result.data);
       this.setState({ Blogs: result.data });
-      
     });
   }
-  changeView(option){
+  changeView(option) {
     this.setState({
-      view:option
+      view: option,
     });
   }
   renderView() {
-    const {view} = this.state;
-    if(view === 'list') {
-      return <List blog={this.state.Blogs}/>
+    const { view } = this.state;
+    if (view === "list") {
+      return <List blog={this.state.Blogs} />;
     } else {
-      return  <Create />
+      return <Create />;
     }
   }
 
@@ -52,29 +51,26 @@ class App extends React.Component {
             </div>
           );
         })}  */}
-        <div className="navbar">
-          <span className="logo"
-            onClick={() => this.changeView('blogs')}>
-            {/* Travelling */}
-            <img src="https://media.giphy.com/media/vBMzK6KN6M6zK/giphy.gif"/>
-          </span>
-          <span className="nav"
-          onClick={() => this.changeView('list')}>
-            All Blogs
-          </span>
-         
-          <span className="nav1"
-          onClick={() => this.changeView('list1')}>
-            Add Blog
-          </span>
-        </div>
-           
-           <div className="main">
-             {this.renderView()}
-           </div>
+        <nav>
+          <div className="navbar">
+            <span className="logo" onClick={() => this.changeView("blogs")}>
+              {/* Travelling */}
+              {/* <img src="https://media.giphy.com/media/vBMzK6KN6M6zK/giphy.gif"/> */}
+            </span>
+            <span className="nav" onClick={() => this.changeView("list")}>
+              All Blogs
+            </span>
+
+            <span className="nav" onClick={() => this.changeView("list1")}>
+              Add Blog
+            </span>
+          </div>
+        </nav>
+
+        <div className="main">{this.renderView()}</div>
       </div>
     );
   }
 }
-0
+0;
 ReactDOM.render(<App />, document.getElementById("app"));
