@@ -9,37 +9,39 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      view:"list",
+      Blogs:[]
     };
   }
 
   componentDidMount() {
     axios.get("/api/blog").then((result) => {
-      this.setState({ data: result.data });
-      console.log(this.state.data);
+      console.log(result.data)
+      this.setState({ Blogs: result.data });
+      
     });
   }
-  // componentDidMount() {
-  //   $.ajax({
-  //     url: '/items',
-  //     success: (data) => {
-  //       this.setState({
-  //         items: data
-  //       })
-  //     },
-  //     error: (err) => {
-  //       console.log('err', err);
-  //     }
-  //   });
-  // }
+  changeView(option){
+    this.setState({
+      view:option
+    });
+  }
+  renderView() {
+    const {view} = this.state;
+    if(view === 'list') {
+      return <List blog={this.state.Blogs}/>
+    } else {
+      return  <Create />
+    }
+  }
 
   render() {
     {
-      console.log(this.state.data);
+      console.log(this.state.Blogs);
     }
     return (
       <div>
-        {/* {this.state.data.map((el) => {
+        {/* {this.state.Blogs.map((el) => {
           return (
             <div key={el.id}>
               <h1>{el.name}</h1>
@@ -49,11 +51,30 @@ class App extends React.Component {
               
             </div>
           );
-        })} */}
-           <Create />
+        })}  */}
+        <div className="navbar">
+          <span className="logo"
+            onClick={() => this.changeView('blogs')}>
+            {/* Travelling */}
+            <img src="https://media.giphy.com/media/vBMzK6KN6M6zK/giphy.gif"/>
+          </span>
+          <span className="nav"
+          onClick={() => this.changeView('list')}>
+            All Blogs
+          </span>
+         
+          <span className="nav1"
+          onClick={() => this.changeView('list1')}>
+            Add Blog
+          </span>
+        </div>
+           
+           <div className="main">
+             {this.renderView()}
+           </div>
       </div>
     );
   }
 }
-
+0
 ReactDOM.render(<App />, document.getElementById("app"));

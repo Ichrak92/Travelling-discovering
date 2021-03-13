@@ -32,19 +32,19 @@ class Create extends React.Component {
         <div className="create">
         <h2>Add Blog </h2>
           name:
-          <input className="inp" placeholder="name"  onChange={this.handleChange}/>
+          <input className="inp" placeholder="name"  onChange={(e)=>this.setState({name:e.target.value})}/>
           <br/>
           email:
-          <input className="inp"  placeholder="email" onChange={this.handleChange} />
+          <input className="inp"  placeholder="email"  onChange={(e)=>this.setState({email:e.target.value})} />
           <br/>
           country:
-          <input className="inp" placeholder="country"  onChange={this.handleChange}/>
+          <input className="inp" placeholder="country"   onChange={(e)=>this.setState({country:e.target.value})}/>
           <br/>
           description:
-          <input className="inp" placeholder="description" onChange={this.handleChange}/>
+          <input className="inp" placeholder="description"  onChange={(e)=>this.setState({name:e.target.value})}/>
           <br/>
           imageUrl:
-          <input className="inp" placeholder="imageUrl" onChange={this.handleChange}/>
+          <input className="inp" placeholder="imageUrl"  onChange={(e)=>this.setState({name:e.target.value})}/>
           <br/>
           <div className="btn">
           <button className="btn1" onClick={this.handleSubmit}>Add Blog</button>

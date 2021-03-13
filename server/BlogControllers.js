@@ -6,8 +6,8 @@ module.exports = {
     console.log("send");
     var syntax = `SELECT * FROM blog`;
     connection.query(syntax, function(err, data) {
-      if (err) throw err;
-      res.send(data);
+      if (err) console.log(err,'errror');
+      res.send(JSON.stringify(data));
     });
   },
 
