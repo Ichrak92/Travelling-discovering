@@ -1,6 +1,7 @@
 import { element } from "angular";
 import React, { Component } from "react";
 import axios from "axios";
+import { data } from "jquery";
 
 export default class List extends Component {
   constructor(props) {
@@ -15,6 +16,21 @@ export default class List extends Component {
       this.setState({ data: result.data });
     });
   }
+
+//   deleteblog(id){
+//     axios.delete(`/api/blog/${id}`)
+//     alert("deleted")
+//   })
+//   .catch(err=>console.log(err))
+// }
+// updateblog(id){
+//   axios.put(`/api/blog/${id}`,{newBlog:this.state.newBlog})
+//   .then((data) =>{
+//     alert("blog updated")
+
+//   })
+//   .catch(err => console.log(err))
+// }
   render() {
     return (
       <div className="cnt">
@@ -30,6 +46,8 @@ export default class List extends Component {
             ))}
           </ul>
         </div>
+        <button className="delete" onClick={()=>{this.deleteblog(e.blog)}}>Delete</button>
+        <button className="update" onClick={()=>{this.updateblog(e.blog)}}>Edit</button>
       </div>
     );
   }
